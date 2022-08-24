@@ -13,9 +13,12 @@ DebugPortAllocator.prototype.nextAvailableStartingAt = function(starting) {
   }
 
   if (starting >= MAX_PORTS) {
-    throw new Error('WorkerPool debug port limit reached: ' + starting + '>= ' + MAX_PORTS );
+    starting = 43210;
+    console.debug(this.ports);
+    this.ports = Object.create(null);
+    // throw new Error('WorkerPool debug port limit reached: ' + starting + '>= ' + MAX_PORTS );
   }
-
+  // console.warn('Current Debug Port===>'+starting+' || All Ports Count===>'+this.length);
   this.ports[starting] = true;
   this.length++;
   return starting;
